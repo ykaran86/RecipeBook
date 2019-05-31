@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-xs-12">
+    <img
+      [src]="recipe.imagePath"
+      alt="{{ recipe.name }}"
+      class="img-responsive"
+      style="max-height: 300px">
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h1 style="color: darkorange">{{ recipe.name }}</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="btn-group"
+      [ngClass] = "{open: isOpen}">
+      <button type="button"
+              class="btn btn-primary dropdown-toggle"
+              (click)= "isOpen = !isOpen" *ngIf="authService.isAuthenticated()">
+        Manage Recipe <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a (click)="toShoppingList()" style="cursor: pointer">To Shopping List</a></li>
+        <li><a style="cursor: pointer" (click)="onEditRecipe()">Edit Recipe</a></li>
+        <li><a style="cursor: pointer" (click)="onDeleteRecipe()">Delete Recipe</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h3 style="color: chocolate"><em><strong>{{ recipe.description }}</strong></em></h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <ul class="list-group">
+      <br><label>Ingredients</label>
+      <li class="list-group-item"
+        *ngFor = "let ingredient of recipe.ingredients">
+            {{ ingredient.name }} - {{ ingredient.amount }}
+      </li>
+    </ul>
+  </div>
+</div>
